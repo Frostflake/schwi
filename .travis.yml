@@ -1,5 +1,8 @@
 dist: trusty
 language: python
 
+install:
+  - python-flake8
+
 script:
-  - flake8 .
+  - flake8 schwi/.
