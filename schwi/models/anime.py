@@ -1,16 +1,19 @@
 import json
 from os import path
 
+
 class Anime():
     def __init__(self, name):
         # Determine the next ID to use
         # TODO: Refactor this into a general function
         global_config = {}
-        with open(path.join(path.expanduser("~"), ".config", "schwi") + '/db/global.json') as json_file:
+        with open(path.join(path.expanduser("~"), ".config", "schwi") +
+            '/db/global.json') as json_file:
             global_config = json.load(json_file)
             self.id = global_config["Next Anime ID"]  # The internal ID
             global_config["Next Anime ID"] += 1
-        with open(path.join(path.expanduser("~"), ".config", "schwi") + '/db/global.json', 'w') as json_file:
+        with open(path.join(path.expanduser("~"), ".config", "schwi") + 
+            '/db/global.json', 'w') as json_file:
             json.dump(global_config, json_file, indent=4)
         self.name = name  # The base Japanese name
         self.year = None  # The inital release year
@@ -46,5 +49,6 @@ class Anime():
         self_dict["Custom"] = self.custom_categories
         self_dict["Genres"] = self.genres
         self_dict["Tags"] = self.tags
-        with open(path.join(path.expanduser("~"), ".config", "schwi") + '/db/anime/' + str(self.id) + '.json', 'w') as json_file:
+        with open(path.join(path.expanduser("~"), ".config", "schwi") +
+            '/db/anime/' + str(self.id) + '.json', 'w') as json_file:
             json.dump(self_dict, json_file, indent=4)
